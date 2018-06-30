@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Jornal</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">340653009800421</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb340653009800421</string>
+    <string name="title_activity_main_jornal">MainJornalActivity</string>
+    <!-- Twitter consumer key and secret -->
+
+
+</resources>
