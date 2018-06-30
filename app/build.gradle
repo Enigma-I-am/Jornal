@@ -27,7 +27,6 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
 
-
 // Firebase dependencies
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
@@ -42,8 +41,6 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
-
-
 
 // Test dependencies
     testImplementation 'junit:junit:4.12'

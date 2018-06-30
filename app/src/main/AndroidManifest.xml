@@ -24,7 +24,8 @@
         <activity
             android:name=".View.MainJornalActivity"
             android:label="@string/title_activity_main_jornal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddEntry"></activity>
     </application>
 
 </manifest>

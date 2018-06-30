@@ -16,7 +16,7 @@ public class JornalEntity {
         this.mEntry = entry;
     }
 
-    public String getWord(){
+    public String getEntry(){
         return this.mEntry;
     }
 }
