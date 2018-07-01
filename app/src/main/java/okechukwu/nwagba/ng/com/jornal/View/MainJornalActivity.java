@@ -82,7 +82,7 @@ public class MainJornalActivity extends AppCompatActivity implements RecyclerVie
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            JornalEntity entity = new JornalEntity(requestCode,data.getStringExtra(AddEntry.EXTRA_REPLY),data.getStringExtra(AddEntry.EXTRA_REPLY_TITLE));
+            JornalEntity entity = new JornalEntity(resultCode,data.getStringExtra(AddEntry.EXTRA_REPLY),data.getStringExtra(AddEntry.EXTRA_REPLY_TITLE));
             mJornalViewModel.insertToJornal(entity);
 
         } else {
