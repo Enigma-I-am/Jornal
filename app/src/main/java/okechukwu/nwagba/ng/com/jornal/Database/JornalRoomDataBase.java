@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 
 import okechukwu.nwagba.ng.com.jornal.DAO.JornalDao;
 
-@Database(entities = {JornalEntity.class}, version = 2)
+@Database(entities = {JornalEntity.class}, version = 2, exportSchema = false)
 public abstract class JornalRoomDataBase extends RoomDatabase {
 
     public abstract JornalDao jornalDao();

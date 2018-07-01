@@ -17,7 +17,10 @@ public interface JornalDao {
     @Query("DELETE FROM jornal_enrty_table")
     void deleteAll();
 
-    @Query("SELECT * from jornal_enrty_table ORDER BY jornal ASC")
+    @Query("SELECT * from jornal_enrty_table ORDER BY Entry ASC")
     LiveData<List<JornalEntity>> getAllEntries();
+
+    @Query("SELECT * FROM jornal_enrty_table WHERE id = :id")
+    LiveData<JornalEntity> getSingleEntries(int id);
 
 }

@@ -16,6 +16,7 @@ public class Repository {
     private JornalDao mDao;
     private LiveData<List<JornalEntity>> mEntity;
 
+
     public Repository(Application application) {
         JornalRoomDataBase DB = JornalRoomDataBase.getDatabase(application);
         mDao = DB.jornalDao();

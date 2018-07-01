@@ -12,17 +12,35 @@ public class JornalEntity {
     private int id;
 
     @NonNull
-    @ColumnInfo(name = "jornal")
+    @ColumnInfo(name = "Entry")
     private String mEntry;
+
+    @NonNull
+    public String mEntryTitle;
+
+
 
     @Ignore
     public JornalEntity(@NonNull int id, @NonNull String mEntry) {
         this.id = id;
         this.mEntry = mEntry;
+
     }
 
-    public JornalEntity(@NonNull String mEntry) {
+    public JornalEntity(int id,@NonNull String mEntry, @NonNull String mEntryTitle) {
+        this.id = id;
         this.mEntry = mEntry;
+        this.mEntryTitle = mEntryTitle;
+
+    }
+
+    @NonNull
+    public String getmEntryTitle() {
+        return mEntryTitle;
+    }
+
+    public void setmEntryTitle(@NonNull String mEntryTitle) {
+        this.mEntryTitle = mEntryTitle;
     }
 
     public int getId() {
@@ -36,4 +54,14 @@ public class JornalEntity {
     public String getEntry(){
         return this.mEntry;
     }
+
+    public void setmEntry(@NonNull String mEntry) {
+        this.mEntry = mEntry;
+    }
+
+
+
+
+
+
 }

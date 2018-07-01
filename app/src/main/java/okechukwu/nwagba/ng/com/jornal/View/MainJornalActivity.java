@@ -13,6 +13,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Random;
 
 import okechukwu.nwagba.ng.com.jornal.Database.JornalEntity;
 import okechukwu.nwagba.ng.com.jornal.R;
@@ -82,8 +82,9 @@ public class MainJornalActivity extends AppCompatActivity implements RecyclerVie
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            JornalEntity entity = new JornalEntity(data.getStringExtra(AddEntry.EXTRA_REPLY));
+            JornalEntity entity = new JornalEntity(requestCode,data.getStringExtra(AddEntry.EXTRA_REPLY),data.getStringExtra(AddEntry.EXTRA_REPLY_TITLE));
             mJornalViewModel.insertToJornal(entity);
+
         } else {
             Toast.makeText(
                     getApplicationContext(),
@@ -97,6 +98,8 @@ public class MainJornalActivity extends AppCompatActivity implements RecyclerVie
     public void itemClicked(View view, int position) {
         Intent intent = new Intent(MainJornalActivity.this, AddEntry.class);
         intent.putExtra(AddEntry.EXTRA_JORNALENTRY, position);
+        intent.putExtra(AddEntry.EXTRA_JORNAL_ENTRY_TITLE,position);
+        intent.putExtra(AddEntry.ENTRY_ID, position);
         startActivity(intent);
     }
 }
@@ -136,19 +139,20 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
-        Random rn = new Random();
-        int n = position + 1;
 
-        int random = n + rn.nextInt(6 - 1 + 1);
+        int BackGroundColor = getRandonColor(position);
 
-        int BackGroundColor = getRandonColor(random);
         if (entities != null) {
-           JornalEntity current = entities.get(position);
-            holder.textview.setText(current.getEntry());
+
+            JornalEntity current = entities.get(position);
+            holder.Entrytextview.setText(current.getEntry());
+            holder.TitletextView.setText(current.mEntryTitle);
             holder.cardView.setCardBackgroundColor(BackGroundColor);
+
+
         } else {
             // Covers the case of data not being ready yet.
-            holder.textview.setText("");
+            holder.Entrytextview.setText("Saved");
 
         }
 
@@ -160,35 +164,39 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     }
 
     private int getRandonColor(int priority) {
-        int priorityColor = 0;
+
+        if (priority > 7){
+            priority = priority % 7;
+        }
 
         switch (priority) {
             case 0:
-                priorityColor = ContextCompat.getColor(mContext,R.color.materialblue);
-                break;
+                return ContextCompat.getColor(mContext,R.color.materialblue);
+
             case 1:
-                priorityColor = ContextCompat.getColor(mContext, R.color.materialblue);
-                break;
+                return ContextCompat.getColor(mContext, R.color.materialblue);
+
             case 2:
-                priorityColor = ContextCompat.getColor(mContext, R.color.materialblueGray);
-                break;
+                return ContextCompat.getColor(mContext, R.color.materialblueGray);
+
             case 3:
-                priorityColor = ContextCompat.getColor(mContext, R.color.materialgreen);
-                break;
+                return ContextCompat.getColor(mContext, R.color.materialgreen);
+
             case 4:
-                priorityColor = ContextCompat.getColor(mContext, R.color.materialpink);
-                break;
+                return ContextCompat.getColor(mContext, R.color.materialpink);
+
             case 5:
-                priorityColor = ContextCompat.getColor(mContext, R.color.materialyellow);
-                break;
+                return ContextCompat.getColor(mContext, R.color.materialyellow);
+
             case 6:
-                priorityColor = ContextCompat.getColor(mContext, R.color.materialred);
-                break;
+                return ContextCompat.getColor(mContext, R.color.materialred);
+
             default:
-                priorityColor = ContextCompat.getColor(mContext,R.color.materialgreen);
-                break;
+                return ContextCompat.getColor(mContext,R.color.materialgreen);
+
+
         }
-        return priorityColor;
+
     }
 
     @Override
@@ -199,11 +207,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textview;
+        TextView Entrytextview;
+        TextView TitletextView;
         CardView cardView;
         public ViewHolder(View itemView) {
             super(itemView);
-            textview = itemView.findViewById(R.id.info_text);
+            Entrytextview = itemView.findViewById(R.id.info_text);
+            TitletextView = itemView.findViewById(R.id.summary);
             cardView = itemView.findViewById(R.id.card_view);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

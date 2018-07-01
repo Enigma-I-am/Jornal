@@ -8,7 +8,7 @@
 
 
 
-    <include layout="@layout/content_jornal" />
+    <include layout="@layout/content_signin" />
 
 
 </android.support.design.widget.CoordinatorLayout>
