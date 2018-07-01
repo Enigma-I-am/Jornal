@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 
 import okechukwu.nwagba.ng.com.jornal.DAO.JornalDao;
 
-@Database(entities = {JornalEntity.class}, version = 1)
+@Database(entities = {JornalEntity.class}, version = 2)
 public abstract class JornalRoomDataBase extends RoomDatabase {
 
     public abstract JornalDao jornalDao();
@@ -22,11 +22,12 @@ public abstract class JornalRoomDataBase extends RoomDatabase {
 
 
         if (INSTANCE == null) {
-            synchronized (RoomDatabase.class) {
+            synchronized (JornalRoomDataBase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = (JornalRoomDataBase) Room.databaseBuilder(context.getApplicationContext(),
-                            RoomDatabase.class, "jornal_database")
+                            JornalRoomDataBase.class, "jornal_database")
                             .addCallback(sRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
                             .build();
 
                 }
@@ -56,12 +57,12 @@ public abstract class JornalRoomDataBase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            mDao.deleteAll();
-            JornalEntity entity = new JornalEntity("Hello");
-            mDao.insert(entity);
-            JornalEntity mentity = new JornalEntity("World");
-            mDao.insert(mentity);
-            return null;
+//            mDao.deleteAll();
+//            JornalEntity entity = new JornalEntity("Hello");
+//            mDao.insert(entity);
+//            JornalEntity mentity = new JornalEntity("World");
+//            mDao.insert(mentity);
+          return null;
         }
     }
 }

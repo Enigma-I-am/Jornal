@@ -29,4 +29,6 @@ public class JornalViewModel extends AndroidViewModel {
     public void insertToJornal(JornalEntity entity){
         mJornalRepository.insert(entity);
     }
+
+
 }

@@ -7,4 +7,12 @@
     <color name="colorBackground">#424242</color>
     
     <color name="fabColor">#90CAF9</color>
+
+    <color name="materialgreen">#aed581</color>
+    <color name="materialblue">#b2ebf2</color>
+    <color name="materialyellow">#fff176</color>
+    <color name="materialpink">#f48fb1</color>
+    <color name="materialred">#ffcdd2</color>
+    <color name="materialblueGray">#b0bec5</color>
+
 </resources>
